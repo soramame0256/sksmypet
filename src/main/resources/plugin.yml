@@ -1,6 +1,6 @@
-name: Skthink
+name: sksmypet
 version: ${project.version}
-main: com.github.soramame0256.skthink.Skthink
+main: com.github.soramame0256.sksmypet.sksmypet
 depend: [ Skript, MyPet]
 authors: [ soramame_256 ]
-description: addon for plugins-skript
+description: addon for Mypet

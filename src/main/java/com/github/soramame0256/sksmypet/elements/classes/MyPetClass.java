@@ -1,4 +1,4 @@
-package com.github.soramame0256.skthink.elements.classes;
+package com.github.soramame0256.sksmypet.elements.classes;
 
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.registrations.Classes;

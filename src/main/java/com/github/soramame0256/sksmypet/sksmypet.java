@@ -1,4 +1,4 @@
-package com.github.soramame0256.skthink;
+package com.github.soramame0256.sksmypet;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
@@ -9,34 +9,34 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 
-public final class Skthink extends JavaPlugin {
+public final class sksmypet extends JavaPlugin {
 
-    Skthink instance;
+    sksmypet instance;
     SkriptAddon addon;
 
     @Override
     public void onEnable() {
-        log("Activating Skthink...");
+        log("Activating sksmypet...");
 
         instance = this;
         addon = Skript.registerAddon(this);
         try {
-            addon.loadClasses("com.github.soramame0256.skthink","elements");
+            addon.loadClasses("com.github.soramame0256.sksmypet","elements");
         } catch(IOException e) {
             Bukkit.getLogger().log(Level.INFO, "Error occured in loading syntax");
             e.printStackTrace();
         }
-        log("Activated Skthink! Have fun!");
+        log("Activated sksmypet! Have fun!");
     }
 
     @Override
     public void onDisable() {
-        log("Skthink is deactivated. see you next time!");
+        log("sksmypet is deactivated. see you next time!");
     }
     public void log(String str) {
         Bukkit.getLogger().log(Level.INFO, str);
     }
-    public Skthink getinstance() {
+    public sksmypet getinstance() {
         return this;
     }
 }

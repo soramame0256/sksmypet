@@ -1,4 +1,4 @@
-package com.github.soramame0256.skthink.elements.classes;
+package com.github.soramame0256.sksmypet.elements.classes;
 
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;

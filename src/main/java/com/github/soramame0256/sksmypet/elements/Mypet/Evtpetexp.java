@@ -1,4 +1,4 @@
-package com.github.soramame0256.skthink.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Literal;

@@ -1,4 +1,4 @@
-package com.github.soramame0256.skthink.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
@@ -12,7 +12,6 @@ import ch.njol.util.coll.CollectionUtils;
 import de.Keyle.MyPet.api.event.MyPetExpEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
