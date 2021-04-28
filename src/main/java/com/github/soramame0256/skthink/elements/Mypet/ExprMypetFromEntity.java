@@ -12,6 +12,7 @@ import de.Keyle.MyPet.api.entity.MyPetBukkitEntity;
 import de.Keyle.MyPet.api.entity.MyPetMinecraftEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Creature;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -23,14 +24,14 @@ public class ExprMypetFromEntity extends SimpleExpression<MyPet> {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingExpression: mypet from entity");
-            Skript.registerExpression(ExprMypetFromEntity.class, MyPet.class, ExpressionType.COMBINED, "mypet from %living entity%");
+            Skript.registerExpression(ExprMypetFromEntity.class, MyPet.class, ExpressionType.COMBINED, "mypet from %entity%");
         }
     }
-    Expression<LivingEntity> entity;
+    Expression<Entity> entity;
     @Nullable
     @Override
     protected MyPet[] get(Event e) {
-        Creature c1 = (Creature)entity;
+        Creature c1 = (Creature)entity.getSingle(e);
         MyPetBukkitEntity e1 = (MyPetBukkitEntity)c1;
         if (e1.getHandle().isMyPet()) {
             return new MyPet[]{e1.getMyPet()};
@@ -56,7 +57,7 @@ public class ExprMypetFromEntity extends SimpleExpression<MyPet> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        this.entity = (Expression<LivingEntity>)exprs[0];
+        this.entity = (Expression<Entity>)exprs[0];
         return true;
     }
 }

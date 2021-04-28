@@ -57,7 +57,8 @@ public class ExprPetExpevtExp extends SimpleExpression<Double> {
         Double exp = ((MyPetExpEvent)e).getExp();
         if (exp != null) {
             Double d1 = ((MyPetExpEvent)e).getExp();
-            Double d2 = (Double)delta[0];
+            Number n1 = (Number)delta[0];
+            Double d2 = n1.doubleValue();
             if (mode == Changer.ChangeMode.SET) {
                 ((MyPetExpEvent)e).setExp(d2);
             } else if (mode == Changer.ChangeMode.ADD) {

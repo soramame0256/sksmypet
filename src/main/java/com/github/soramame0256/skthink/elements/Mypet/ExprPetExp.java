@@ -56,7 +56,8 @@ public class ExprPetExp extends SimpleExpression<Double> {
         MyPet peta = pet.getSingle(e);
         if (peta != null) {
             Double exp1 = peta.getExp();
-            Double exp2 = (Double)delta[0];
+            Number num1 = (Number)delta[0];
+            Double exp2 = num1.doubleValue();
             if (mode == Changer.ChangeMode.ADD) {
                 peta.setExp(exp1 + exp2);
             } else if (mode == Changer.ChangeMode.REMOVE) {
