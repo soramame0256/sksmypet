@@ -17,11 +17,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class ExprPetExpevtExp extends SimpleExpression<Double> {
+public class ExprMyPetExpevtExp extends SimpleExpression<Double> {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingExpression: exp pet gotten");
-            Skript.registerExpression(ExprPetExpevtExp.class, Double.class, ExpressionType.SIMPLE, "exp pet gotten");
+            Skript.registerExpression(ExprMyPetExpevtExp.class, Double.class, ExpressionType.SIMPLE, "exp pet gotten");
         }
     }
     private Expression<Double> exp;

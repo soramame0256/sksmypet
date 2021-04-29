@@ -9,7 +9,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import de.Keyle.MyPet.api.event.MyPetDamageEvent;
+import de.Keyle.MyPet.api.event.MyPetFeedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -17,19 +17,19 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class ExprPetDamageevtdamage extends SimpleExpression<Double> {
+public class ExprMyPetSaturationevtfeed extends SimpleExpression<Double> {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingExpression: petdamageevtdamage");
-            Skript.registerExpression(ExprPetDamageevtdamage.class, Double.class, ExpressionType.COMBINED, "pet damage");
+            Bukkit.getLogger().log(Level.INFO, "LoadingExpression: feed saturation");
+            Skript.registerExpression(ExprMyPetSaturationevtfeed.class, Double.class, ExpressionType.SIMPLE, "[pet] feed saturation");
         }
     }
-    Expression<Double> damage;
+    Expression<Double> d;
     @Nullable
     @Override
     protected Double[] get(Event e) {
-        return new Double[]{((MyPetDamageEvent)e).getDamage()};
+        return new Double[]{(((MyPetFeedEvent)e).getSaturation())};
     }
 
     @Override
@@ -44,29 +44,29 @@ public class ExprPetDamageevtdamage extends SimpleExpression<Double> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return " ";
+        return "pet feed result";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        if (ScriptLoader.isCurrentEvent(MyPetDamageEvent.class)) {
+        if (ScriptLoader.isCurrentEvent(MyPetFeedEvent.class)) {
             return true;
         }
-        Skript.error("これはmypet damageイベントでのみ使用可能です");
+        Skript.error("これはmypet feedイベントでのみ使用可能です");
         return false;
     }
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-        Double damage = ((MyPetDamageEvent)e).getDamage();
-        if (damage != null) {
-            Double d1 = ((MyPetDamageEvent)e).getDamage();
+        Double sat = ((MyPetFeedEvent)e).getSaturation();
+        if (sat != null) {
+            Double d1 = ((MyPetFeedEvent)e).getSaturation();
             Number n1 = (Number)delta[0];
             Double d2 = n1.doubleValue();
             if (mode == Changer.ChangeMode.SET) {
-                ((MyPetDamageEvent)e).setDamage(d2);
+                ((MyPetFeedEvent)e).setSaturation(d2);
             } else if (mode == Changer.ChangeMode.ADD) {
-                ((MyPetDamageEvent)e).setDamage(d2 + d1);
+                ((MyPetFeedEvent)e).setSaturation(d2 + d1);
             } else if (mode == Changer.ChangeMode.REMOVE) {
-                ((MyPetDamageEvent)e).setDamage(d2 - d1);
+                ((MyPetFeedEvent)e).setSaturation(d2 - d1);
             }
         }
     }

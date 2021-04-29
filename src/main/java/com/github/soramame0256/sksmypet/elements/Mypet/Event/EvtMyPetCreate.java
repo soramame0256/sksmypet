@@ -16,13 +16,13 @@ import org.bukkit.event.Event;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class Evtpetcreate extends SkriptEvent {
+public class EvtMyPetCreate extends SkriptEvent {
 
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet petcreate");
-            Skript.registerEvent("MyPet Pet Create", Evtpetcreate.class, MyPetCreateEvent.class, "mypet (create|leash)")
+            Skript.registerEvent("MyPet Pet Create", EvtMyPetCreate.class, MyPetCreateEvent.class, "mypet (create|leash)")
                     .description("Mypetにてペットが作成されたときに呼び出されます");
             EventValues.registerEventValue(MyPetCreateEvent.class, Player.class, new Getter<Player, MyPetCreateEvent>() {
                 @Nullable

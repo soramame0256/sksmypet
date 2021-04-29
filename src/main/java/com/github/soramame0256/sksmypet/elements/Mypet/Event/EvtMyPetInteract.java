@@ -15,12 +15,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class EvtPetInteract extends SkriptEvent {
+public class EvtMyPetInteract extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: Pet Interact");
-            Skript.registerEvent("MyPet Interact", EvtPetInteract.class, MyPetInteractEvent.class, "mypet interact")
+            Skript.registerEvent("MyPet Interact", EvtMyPetInteract.class, MyPetInteractEvent.class, "mypet interact")
                     .description("発動条件不明");
             EventValues.registerEventValue(MyPetInteractEvent.class, MyPet.class, new Getter<MyPet, MyPetInteractEvent>() {
                 @Nullable

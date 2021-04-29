@@ -7,28 +7,28 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetStatusEvent;
+import de.Keyle.MyPet.api.event.MyPetSendAwayEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("ALL")
-public class EvtPetStatus extends SkriptEvent {
+public class EvtMyPetSendAway extends SkriptEvent {
 
     static {
-        Skript.registerEvent("MyPet Status", EvtMypetCall.class, MyPetStatusEvent.class, "mypet save")
-                .description("発生条件不明");
-        EventValues.registerEventValue(MyPetStatusEvent.class, MyPet.class, new Getter<MyPet, MyPetStatusEvent>() {
+        Skript.registerEvent("MyPet Send Away", EvtMyPetCall.class, MyPetSendAwayEvent.class, "mypet send[ ]away")
+                .description("ペットが収納されたときに呼び出されます");
+        EventValues.registerEventValue(MyPetSendAwayEvent.class, MyPet.class, new Getter<MyPet, MyPetSendAwayEvent>() {
             @Nullable
             @Override
-            public MyPet get(MyPetStatusEvent arg) {
+            public MyPet get(MyPetSendAwayEvent arg) {
                 return arg.getOwner().getMyPet();
             }
         }, 0);
-        EventValues.registerEventValue(MyPetStatusEvent.class, Player.class, new Getter<Player, MyPetStatusEvent>() {
+        EventValues.registerEventValue(MyPetSendAwayEvent.class, Player.class, new Getter<Player, MyPetSendAwayEvent>() {
             @Nullable
             @Override
-            public Player get(MyPetStatusEvent arg) {
+            public Player get(MyPetSendAwayEvent arg) {
                 return arg.getOwner().getPlayer();
             }
         }, 0);

@@ -13,9 +13,9 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("ALL")
-public class EvtPetSit extends SkriptEvent {
+public class EvtMyPetSit extends SkriptEvent {
     static {
-        Skript.registerEvent("MyPet Sit", EvtPetSit.class, MyPetSitEvent.class, "mypet sit")
+        Skript.registerEvent("MyPet Sit", EvtMyPetSit.class, MyPetSitEvent.class, "mypet sit")
                 .description("ペットが座ったときに呼び出されます");
         EventValues.registerEventValue(MyPetSitEvent.class, MyPet.class, new Getter<MyPet, MyPetSitEvent>() {
             @Nullable

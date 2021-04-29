@@ -17,12 +17,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class ExprResultevtfeed extends SimpleExpression<MyPetFeedEvent.Result> {
+public class ExprResultevtFeed extends SimpleExpression<MyPetFeedEvent.Result> {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingExpression: pet feed result");
-            Skript.registerExpression(ExprResultevtfeed.class, MyPetFeedEvent.Result.class, ExpressionType.SIMPLE, "[pet] feed result");
+            Skript.registerExpression(ExprResultevtFeed.class, MyPetFeedEvent.Result.class, ExpressionType.SIMPLE, "[pet] feed result");
         }
     }
     @Nullable

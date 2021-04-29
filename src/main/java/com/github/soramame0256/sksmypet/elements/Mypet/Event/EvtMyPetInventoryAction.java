@@ -7,7 +7,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetLevelUpEvent;
+import de.Keyle.MyPet.api.event.MyPetInventoryActionEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -16,32 +16,32 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class EvtPetLevelUp extends SkriptEvent {
+public class EvtMyPetInventoryAction extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: PetLevelUp");
-            Skript.registerEvent("Mypet Level Up", EvtPetLevelUp.class, MyPetLevelUpEvent.class, "mypet level[ ]up")
-                    .description("ペットがレベルアップしたときに呼び出されます");
-            EventValues.registerEventValue(MyPetLevelUpEvent.class, int.class, new Getter<Integer, MyPetLevelUpEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet inventory action");
+            Skript.registerEvent("MyPet Inventory Action", EvtMyPetInventoryAction.class, MyPetInventoryActionEvent.class, "mypet inventory action")
+                    .description("ペットのインベントリが変更されたときに呼び出されます");
+            EventValues.registerEventValue(MyPetInventoryActionEvent.class, MyPet.class, new Getter<MyPet, MyPetInventoryActionEvent>() {
                 @Nullable
                 @Override
-                public Integer get(MyPetLevelUpEvent arg) {
-                    return arg.fromLevel();
+                public MyPet get(MyPetInventoryActionEvent arg) {
+                    return arg.getPet();
                 }
             }, 0);
-            EventValues.registerEventValue(MyPetLevelUpEvent.class, Player.class, new Getter<Player, MyPetLevelUpEvent>() {
+            EventValues.registerEventValue(MyPetInventoryActionEvent.class, Player.class, new Getter<Player, MyPetInventoryActionEvent>() {
                 @Nullable
                 @Override
-                public Player get(MyPetLevelUpEvent arg) {
+                public Player get(MyPetInventoryActionEvent arg) {
                     return arg.getOwner().getPlayer();
                 }
             }, 0);
-            EventValues.registerEventValue(MyPetLevelUpEvent.class, MyPet.class, new Getter<MyPet, MyPetLevelUpEvent>() {
+            EventValues.registerEventValue(MyPetInventoryActionEvent.class, String.class, new Getter<String, MyPetInventoryActionEvent>() {
                 @Nullable
                 @Override
-                public MyPet get(MyPetLevelUpEvent arg) {
-                    return arg.getPet();
+                public String get(MyPetInventoryActionEvent arg) {
+                    return arg.getAction().toString();
                 }
             }, 0);
         }

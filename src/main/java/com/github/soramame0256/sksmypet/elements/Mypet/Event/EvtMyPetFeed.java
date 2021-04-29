@@ -7,36 +7,29 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetDamageEvent;
+import de.Keyle.MyPet.api.event.MyPetFeedEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class EvtPetDamage extends SkriptEvent {
+public class EvtMyPetFeed extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypetdamage");
-            Skript.registerEvent("MyPet Damage", EvtPetDamage.class, MyPetDamageEvent.class, "mypet damage")
-                    .description("ペットがダメージを与えたときに呼び出されます");
-            EventValues.registerEventValue(MyPetDamageEvent.class, Player.class, new Getter<Player, MyPetDamageEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: petfeed");
+            Skript.registerEvent("MyPet Feed", EvtMyPetFeed.class, MyPetFeedEvent.class, "mypet feed")
+                    .description("ペットが餌を与えられたとき呼び出されます");
+            EventValues.registerEventValue(MyPetFeedEvent.class, MyPet.class, new Getter<MyPet, MyPetFeedEvent>() {
                 @Nullable
                 @Override
-                public Player get(MyPetDamageEvent arg) {
-                    return arg.getOwner().getPlayer();
-                }
-            },0);
-            EventValues.registerEventValue(MyPetDamageEvent.class, MyPet.class, new Getter<MyPet, MyPetDamageEvent>() {
-                @Nullable
-                @Override
-                public MyPet get(MyPetDamageEvent arg) {
+                public MyPet get(MyPetFeedEvent arg) {
                     return null;
                 }
-            },0);
+            }, 0);
+
         }
     }
     @Override

@@ -16,13 +16,13 @@ import org.bukkit.event.Event;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class Evtpetremove extends SkriptEvent {
+public class EvtMyPetRemove extends SkriptEvent {
 
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet petremove");
-            Skript.registerEvent("MyPet Pet Remove", Evtpetremove.class, MyPetRemoveEvent.class, "mypet (remove|unleash)")
+            Skript.registerEvent("MyPet Pet Remove", EvtMyPetRemove.class, MyPetRemoveEvent.class, "mypet (remove|unleash)")
                     .description("ペットが削除されたときに呼び出されます");
             EventValues.registerEventValue(MyPetRemoveEvent.class, Player.class, new Getter<Player, MyPetRemoveEvent>() {
                 @Nullable

@@ -16,12 +16,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class EvtPetLevelDown extends SkriptEvent {
+public class EvtMyPetLevelDown extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: PetLevelDown");
-            Skript.registerEvent("Mypet Level Down", EvtPetLevelDown.class, MyPetLevelDownEvent.class, "mypet level[ ]down")
+            Skript.registerEvent("Mypet Level Down", EvtMyPetLevelDown.class, MyPetLevelDownEvent.class, "mypet level[ ]down")
                     .description("ペットがレベルダウンしたときに呼び出されます");
             EventValues.registerEventValue(MyPetLevelDownEvent.class, int.class, new Getter<Integer, MyPetLevelDownEvent>() {
                 @Nullable

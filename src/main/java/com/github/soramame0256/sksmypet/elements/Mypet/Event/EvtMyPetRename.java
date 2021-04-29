@@ -7,9 +7,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetOnHitSkillEvent;
+import de.Keyle.MyPet.api.event.MyPetNameEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -17,34 +16,34 @@ import org.jetbrains.annotations.Nullable;
 import java.util.logging.Level;
 
 @SuppressWarnings("ALL")
-public class EvtPetSkillHit extends SkriptEvent {
+public class EvtMyPetRename extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: Hit Skill");
-            Skript.registerEvent("MyPet On Hit Skill", EvtPetSkillHit.class, MyPetOnHitSkillEvent.class, "mypet hit skill")
-                    .description("発生条件不明");
-            EventValues.registerEventValue(MyPetOnHitSkillEvent.class, MyPet.class, new Getter<MyPet, MyPetOnHitSkillEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: Pet Rename");
+            Skript.registerEvent("MyPet Rename", EvtMyPetRename.class, MyPetNameEvent.class, "mypet (rename|name[ change])")
+                    .description("ペットの名前が変更されたときに呼び出されます");
+            EventValues.registerEventValue(MyPetNameEvent.class, String.class, new Getter<String, MyPetNameEvent>() {
                 @Nullable
                 @Override
-                public MyPet get(MyPetOnHitSkillEvent arg) {
+                public String get(MyPetNameEvent arg) {
+                    return arg.getNewName();
+                }
+            }, 0);
+            EventValues.registerEventValue(MyPetNameEvent.class, Player.class, new Getter<Player, MyPetNameEvent>() {
+                @Nullable
+                @Override
+                public Player get(MyPetNameEvent arg) {
+                    return arg.getMyPet().getOwner().getPlayer();
+                }
+            },0);
+            EventValues.registerEventValue(MyPetNameEvent.class, MyPet.class, new Getter<MyPet, MyPetNameEvent>() {
+                @Nullable
+                @Override
+                public MyPet get(MyPetNameEvent arg) {
                     return arg.getMyPet();
                 }
-            }, 0);
-            EventValues.registerEventValue(MyPetOnHitSkillEvent.class, Player.class, new Getter<Player, MyPetOnHitSkillEvent>() {
-                @Nullable
-                @Override
-                public Player get(MyPetOnHitSkillEvent arg) {
-                    return arg.getOwner().getPlayer();
-                }
-            }, 0);
-            EventValues.registerEventValue(MyPetOnHitSkillEvent.class, LivingEntity.class, new Getter<LivingEntity, MyPetOnHitSkillEvent>() {
-                @Nullable
-                @Override
-                public LivingEntity get(MyPetOnHitSkillEvent arg) {
-                    return arg.getTarget();
-                }
-            }, 0);
+            },0);
         }
     }
     @Override
