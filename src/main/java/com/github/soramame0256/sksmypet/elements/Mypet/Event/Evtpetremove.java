@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Event;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Literal;
@@ -15,6 +15,7 @@ import org.bukkit.event.Event;
 
 import java.util.logging.Level;
 
+@SuppressWarnings("ALL")
 public class Evtpetremove extends SkriptEvent {
 
 

@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Expression;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
@@ -9,7 +9,6 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import de.Keyle.MyPet.api.event.MyPetExpEvent;
 import de.Keyle.MyPet.api.event.MyPetFeedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -17,19 +16,19 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
-public class ExprPetSaturationevtfeed extends SimpleExpression<Double> {
+@SuppressWarnings("ALL")
+public class ExprResultevtfeed extends SimpleExpression<MyPetFeedEvent.Result> {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingExpression: feed saturation");
-            Skript.registerExpression(ExprPetSaturationevtfeed.class, Double.class, ExpressionType.SIMPLE, "[pet] feed saturation");
+            Bukkit.getLogger().log(Level.INFO, "LoadingExpression: pet feed result");
+            Skript.registerExpression(ExprResultevtfeed.class, MyPetFeedEvent.Result.class, ExpressionType.SIMPLE, "[pet] feed result");
         }
     }
-    Expression<Double> d;
     @Nullable
     @Override
-    protected Double[] get(Event e) {
-        return new Double[]{(((MyPetFeedEvent)e).getSaturation())};
+    protected MyPetFeedEvent.Result[] get(Event e) {
+        return new MyPetFeedEvent.Result[]{(((MyPetFeedEvent)e).getResult())};
     }
 
     @Override
@@ -38,13 +37,13 @@ public class ExprPetSaturationevtfeed extends SimpleExpression<Double> {
     }
 
     @Override
-    public Class<? extends Double> getReturnType() {
-        return Double.class;
+    public Class<? extends MyPetFeedEvent.Result> getReturnType() {
+        return MyPetFeedEvent.Result.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "pet feed result";
+        return "feed result";
     }
 
     @Override
@@ -56,23 +55,17 @@ public class ExprPetSaturationevtfeed extends SimpleExpression<Double> {
         return false;
     }
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-        Double sat = ((MyPetFeedEvent)e).getSaturation();
-        if (sat != null) {
-            Double d1 = ((MyPetFeedEvent)e).getSaturation();
-            Number n1 = (Number)delta[0];
-            Double d2 = n1.doubleValue();
+        MyPetFeedEvent.Result result = ((MyPetFeedEvent)e).getResult();
+        if (result != null) {
+            MyPetFeedEvent.Result result2 = (MyPetFeedEvent.Result) delta[0];
             if (mode == Changer.ChangeMode.SET) {
-                ((MyPetFeedEvent)e).setSaturation(d2);
-            } else if (mode == Changer.ChangeMode.ADD) {
-                ((MyPetFeedEvent)e).setSaturation(d2 + d1);
-            } else if (mode == Changer.ChangeMode.REMOVE) {
-                ((MyPetFeedEvent)e).setSaturation(d2 - d1);
+                ((MyPetFeedEvent) e).setResult(result2);
             }
         }
     }
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        if (mode == Changer.ChangeMode.SET || mode == Changer.ChangeMode.ADD || mode == Changer.ChangeMode.REMOVE) {
-            return CollectionUtils.array(Number.class);
+        if (mode == Changer.ChangeMode.SET) {
+            return CollectionUtils.array(MyPetFeedEvent.Result.class);
         }
         return null;
     }

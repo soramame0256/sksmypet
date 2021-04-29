@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Expression;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
+@SuppressWarnings("ALL")
 public class ExprMypetFromEntity extends SimpleExpression<MyPet> {
 
     static {

@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Event;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Literal;
@@ -10,11 +10,11 @@ import de.Keyle.MyPet.api.entity.MyPet;
 import de.Keyle.MyPet.api.event.MyPetFeedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
+@SuppressWarnings("ALL")
 public class Evtpetfeed extends SkriptEvent {
 
     static {

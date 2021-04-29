@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Expression;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
+@SuppressWarnings("ALL")
 public class ExprPetExpevtExp extends SimpleExpression<Double> {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {

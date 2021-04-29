@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Event;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Literal;
@@ -7,7 +7,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetExpEvent;
+import de.Keyle.MyPet.api.event.MyPetActivatedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -15,24 +15,26 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
-public class Evtpetexp extends SkriptEvent {
+@SuppressWarnings("ALL")
+public class EvtMypetActivate extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet petexp");
-            Skript.registerEvent("MyPet PetExp", Evtpetexp.class, MyPetExpEvent.class, "mypet exp")
-                    .description("ペットが経験値を取得したときに呼び出されます");
-            EventValues.registerEventValue(MyPetExpEvent.class, Player.class, new Getter<Player, MyPetExpEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: MypetActivate");
+            Skript.registerEvent("MyPet Activate", EvtMypetActivate.class, MyPetActivatedEvent.class, "mypet activate[d]")
+                    .description("発動条件不明");;
+            EventValues.registerEventValue(MyPetActivatedEvent.class, MyPet.class, new Getter<MyPet, MyPetActivatedEvent>() {
                 @Nullable
                 @Override
-                public Player get(MyPetExpEvent arg) {
-                    return arg.getOwner().getPlayer();
+                public MyPet get(MyPetActivatedEvent arg) {
+                    return arg.getMyPet();
                 }
             }, 0);
-            EventValues.registerEventValue(MyPetExpEvent.class, MyPet.class, new Getter<MyPet, MyPetExpEvent>() {
+            EventValues.registerEventValue(MyPetActivatedEvent.class, Player.class, new Getter<Player, MyPetActivatedEvent>() {
+                @Nullable
                 @Override
-                public MyPet get(MyPetExpEvent arg) {
-                    return arg.getPet();
+                public Player get(MyPetActivatedEvent arg) {
+                    return arg.getOwner().getPlayer();
                 }
             }, 0);
         }
@@ -52,5 +54,4 @@ public class Evtpetexp extends SkriptEvent {
     public String toString(@Nullable Event e, boolean debug) {
         return " ";
     }
-
 }

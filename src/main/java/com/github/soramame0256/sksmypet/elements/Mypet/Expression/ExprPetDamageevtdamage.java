@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Expression;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
@@ -10,14 +10,13 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import de.Keyle.MyPet.api.event.MyPetDamageEvent;
-import de.Keyle.MyPet.api.event.MyPetExpEvent;
-import de.Keyle.MyPet.api.event.MyPetFeedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
+@SuppressWarnings("ALL")
 public class ExprPetDamageevtdamage extends SimpleExpression<Double> {
 
     static {

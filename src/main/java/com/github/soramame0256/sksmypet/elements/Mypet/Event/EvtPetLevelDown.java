@@ -1,4 +1,4 @@
-package com.github.soramame0256.sksmypet.elements.Mypet;
+package com.github.soramame0256.sksmypet.elements.Mypet.Event;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Literal;
@@ -7,41 +7,41 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetOnHitSkillEvent;
+import de.Keyle.MyPet.api.event.MyPetLevelDownEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
-public class EvtPetSkillHit extends SkriptEvent {
+@SuppressWarnings("ALL")
+public class EvtPetLevelDown extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: Hit Skill");
-            Skript.registerEvent("MyPet On Hit Skill", EvtPetSkillHit.class, MyPetOnHitSkillEvent.class, "mypet hit skill")
-                    .description("発生条件不明");
-            EventValues.registerEventValue(MyPetOnHitSkillEvent.class, MyPet.class, new Getter<MyPet, MyPetOnHitSkillEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: PetLevelDown");
+            Skript.registerEvent("Mypet Level Down", EvtPetLevelDown.class, MyPetLevelDownEvent.class, "mypet level[ ]down")
+                    .description("ペットがレベルダウンしたときに呼び出されます");
+            EventValues.registerEventValue(MyPetLevelDownEvent.class, int.class, new Getter<Integer, MyPetLevelDownEvent>() {
                 @Nullable
                 @Override
-                public MyPet get(MyPetOnHitSkillEvent arg) {
-                    return arg.getMyPet();
+                public Integer get(MyPetLevelDownEvent arg) {
+                    return arg.fromLevel();
                 }
             }, 0);
-            EventValues.registerEventValue(MyPetOnHitSkillEvent.class, Player.class, new Getter<Player, MyPetOnHitSkillEvent>() {
+            EventValues.registerEventValue(MyPetLevelDownEvent.class, Player.class, new Getter<Player, MyPetLevelDownEvent>() {
                 @Nullable
                 @Override
-                public Player get(MyPetOnHitSkillEvent arg) {
+                public Player get(MyPetLevelDownEvent arg) {
                     return arg.getOwner().getPlayer();
                 }
             }, 0);
-            EventValues.registerEventValue(MyPetOnHitSkillEvent.class, LivingEntity.class, new Getter<LivingEntity, MyPetOnHitSkillEvent>() {
+            EventValues.registerEventValue(MyPetLevelDownEvent.class, MyPet.class, new Getter<MyPet, MyPetLevelDownEvent>() {
                 @Nullable
                 @Override
-                public LivingEntity get(MyPetOnHitSkillEvent arg) {
-                    return arg.getTarget();
+                public MyPet get(MyPetLevelDownEvent arg) {
+                    return arg.getPet();
                 }
             }, 0);
         }
