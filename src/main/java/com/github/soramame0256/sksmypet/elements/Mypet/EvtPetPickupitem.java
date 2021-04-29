@@ -7,40 +7,41 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetLevelDownEvent;
+import de.Keyle.MyPet.api.event.MyPetPickupItemEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
 
-public class EvtPetLevelDown extends SkriptEvent {
+public class EvtPetPickupitem extends SkriptEvent {
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: PetLevelDown");
-            Skript.registerEvent("Mypet Level Down", EvtPetLevelDown.class, MyPetLevelDownEvent.class, "mypet level[ ]down")
-                    .description("ペットがレベルダウンしたときに呼び出されます");
-            EventValues.registerEventValue(MyPetLevelDownEvent.class, int.class, new Getter<Integer, MyPetLevelDownEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadedEvent: PetPickup");
+            Skript.registerEvent("MyPet Pickup Item", EvtPetPickupitem.class, MyPetPickupItemEvent.class, "mypet pickup[ item]")
+                    .description("ペットがアイテムを拾ったときに呼び出されます");
+            EventValues.registerEventValue(MyPetPickupItemEvent.class, Player.class, new Getter<Player, MyPetPickupItemEvent>() {
                 @Nullable
                 @Override
-                public Integer get(MyPetLevelDownEvent arg) {
-                    return arg.fromLevel();
-                }
-            }, 0);
-            EventValues.registerEventValue(MyPetLevelDownEvent.class, Player.class, new Getter<Player, MyPetLevelDownEvent>() {
-                @Nullable
-                @Override
-                public Player get(MyPetLevelDownEvent arg) {
+                public Player get(MyPetPickupItemEvent arg) {
                     return arg.getOwner().getPlayer();
                 }
             }, 0);
-            EventValues.registerEventValue(MyPetLevelDownEvent.class, MyPet.class, new Getter<MyPet, MyPetLevelDownEvent>() {
+            EventValues.registerEventValue(MyPetPickupItemEvent.class, MyPet.class, new Getter<MyPet, MyPetPickupItemEvent>() {
                 @Nullable
                 @Override
-                public MyPet get(MyPetLevelDownEvent arg) {
+                public MyPet get(MyPetPickupItemEvent arg) {
                     return arg.getPet();
+                }
+            }, 0);
+            EventValues.registerEventValue(MyPetPickupItemEvent.class, ItemStack.class, new Getter<ItemStack, MyPetPickupItemEvent>() {
+                @Nullable
+                @Override
+                public ItemStack get(MyPetPickupItemEvent arg) {
+                    return arg.getItem().getItemStack();
                 }
             }, 0);
         }

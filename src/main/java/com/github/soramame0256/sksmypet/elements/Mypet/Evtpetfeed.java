@@ -20,7 +20,7 @@ public class Evtpetfeed extends SkriptEvent {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: petfeed");
-            Skript.registerEvent("mypetfeed", Evtpetfeed.class, MyPetFeedEvent.class, "mypet feed")
+            Skript.registerEvent("MyPet Feed", Evtpetfeed.class, MyPetFeedEvent.class, "mypet feed")
                     .description("ペットが餌を与えられたとき呼び出されます");
             EventValues.registerEventValue(MyPetFeedEvent.class, MyPet.class, new Getter<MyPet, MyPetFeedEvent>() {
                 @Nullable

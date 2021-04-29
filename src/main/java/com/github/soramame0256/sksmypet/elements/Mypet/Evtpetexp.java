@@ -20,8 +20,8 @@ public class Evtpetexp extends SkriptEvent {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet petexp");
-            Skript.registerEvent("mypet petexp", Evtpetexp.class, MyPetExpEvent.class, "mypet exp")
-                    .description("Mypetにてペットが経験値を取得したときに呼び出されます");
+            Skript.registerEvent("MyPet PetExp", Evtpetexp.class, MyPetExpEvent.class, "mypet exp")
+                    .description("ペットが経験値を取得したときに呼び出されます");
             EventValues.registerEventValue(MyPetExpEvent.class, Player.class, new Getter<Player, MyPetExpEvent>() {
                 @Nullable
                 @Override

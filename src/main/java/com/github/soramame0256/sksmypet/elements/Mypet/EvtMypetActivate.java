@@ -20,7 +20,7 @@ public class EvtMypetActivate extends SkriptEvent {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: MypetActivate");
-            Skript.registerEvent("MypetActivate", EvtMypetActivate.class, MyPetActivatedEvent.class, "mypet activate[d]")
+            Skript.registerEvent("MyPet Activate", EvtMypetActivate.class, MyPetActivatedEvent.class, "mypet activate[d]")
                     .description("発動条件不明");;
             EventValues.registerEventValue(MyPetActivatedEvent.class, MyPet.class, new Getter<MyPet, MyPetActivatedEvent>() {
                 @Nullable

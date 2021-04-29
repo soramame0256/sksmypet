@@ -21,7 +21,7 @@ public class EvtActiveTargetSkill extends SkriptEvent {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: ActiveTargetSkill");
-            Skript.registerEvent("ActiveTargetSkill", EvtActiveTargetSkill.class, MyPetActiveTargetSkillEvent.class, "mypet target skill")
+            Skript.registerEvent("MyPet Active Target Skill", EvtActiveTargetSkill.class, MyPetActiveTargetSkillEvent.class, "mypet target skill")
                     .description("発動条件不明");
             EventValues.registerEventValue(MyPetActiveTargetSkillEvent.class, LivingEntity.class, new Getter<LivingEntity, MyPetActiveTargetSkillEvent>() {
                 @Nullable

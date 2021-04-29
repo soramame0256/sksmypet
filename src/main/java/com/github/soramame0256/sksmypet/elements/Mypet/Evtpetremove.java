@@ -7,7 +7,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import de.Keyle.MyPet.api.entity.MyPet;
-import de.Keyle.MyPet.api.event.MyPetCreateEvent;
+import de.Keyle.MyPet.api.event.MyPetRemoveEvent;
 import de.Keyle.MyPet.util.sentry.util.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,28 +15,28 @@ import org.bukkit.event.Event;
 
 import java.util.logging.Level;
 
-public class Evtpetcreate extends SkriptEvent {
+public class Evtpetremove extends SkriptEvent {
 
 
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
-            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet petcreate");
-            Skript.registerEvent("MyPet Pet Create", Evtpetcreate.class, MyPetCreateEvent.class, "mypet (create|leash)")
-                    .description("Mypetにてペットが作成されたときに呼び出されます");
-            EventValues.registerEventValue(MyPetCreateEvent.class, Player.class, new Getter<Player, MyPetCreateEvent>() {
+            Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypet petremove");
+            Skript.registerEvent("MyPet Pet Remove", Evtpetremove.class, MyPetRemoveEvent.class, "mypet (remove|unleash)")
+                    .description("ペットが削除されたときに呼び出されます");
+            EventValues.registerEventValue(MyPetRemoveEvent.class, Player.class, new Getter<Player, MyPetRemoveEvent>() {
                 @Nullable
                 @Override
-                public Player get(MyPetCreateEvent arg) { return arg.getOwner().getPlayer(); }
+                public Player get(MyPetRemoveEvent arg) { return arg.getOwner().getPlayer(); }
             },0);
-            EventValues.registerEventValue(MyPetCreateEvent.class, String.class, new Getter<String, MyPetCreateEvent>() {
+            EventValues.registerEventValue(MyPetRemoveEvent.class, String.class, new Getter<String, MyPetRemoveEvent>() {
                 @Nullable
                 @Override
-                public String get(MyPetCreateEvent arg) { return arg.getSource().toString(); }
+                public String get(MyPetRemoveEvent arg) { return arg.getSource().toString(); }
             }, 0);
-            EventValues.registerEventValue(MyPetCreateEvent.class, MyPet.class, new Getter<MyPet, MyPetCreateEvent>() {
+            EventValues.registerEventValue(MyPetRemoveEvent.class, MyPet.class, new Getter<MyPet, MyPetRemoveEvent>() {
                 @Nullable
                 @Override
-                public MyPet get(MyPetCreateEvent arg) { return arg.getMyPet().getOwner().getMyPet(); }
+                public MyPet get(MyPetRemoveEvent arg) { return arg.getMyPet().getOwner().getMyPet(); }
             }, 0);
         }
     }

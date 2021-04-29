@@ -20,7 +20,7 @@ public class EvtPetDamage extends SkriptEvent {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: mypetdamage");
-            Skript.registerEvent("mypet damage", EvtPetDamage.class, MyPetDamageEvent.class, "mypet damage")
+            Skript.registerEvent("MyPet Damage", EvtPetDamage.class, MyPetDamageEvent.class, "mypet damage")
                     .description("ペットがダメージを与えたときに呼び出されます");
             EventValues.registerEventValue(MyPetDamageEvent.class, Player.class, new Getter<Player, MyPetDamageEvent>() {
                 @Nullable

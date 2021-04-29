@@ -4,17 +4,28 @@ import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import de.Keyle.MyPet.api.event.MyPetExpEvent;
 import de.Keyle.MyPet.api.event.MyPetFeedEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.logging.Level;
+
 public class ExprPetSaturationevtfeed extends SimpleExpression<Double> {
 
+    static {
+        if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
+            Bukkit.getLogger().log(Level.INFO, "LoadingExpression: feed saturation");
+            Skript.registerExpression(ExprPetSaturationevtfeed.class, Double.class, ExpressionType.SIMPLE, "[pet] feed saturation");
+        }
+    }
+    Expression<Double> d;
     @Nullable
     @Override
     protected Double[] get(Event e) {

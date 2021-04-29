@@ -20,7 +20,7 @@ public class EvtPetLevelChange extends SkriptEvent {
     static {
         if (Bukkit.getPluginManager().isPluginEnabled("MyPet")) {
             Bukkit.getLogger().log(Level.INFO, "LoadingEvent: Pet Level Change");
-            Skript.registerEvent("mypet level change", EvtPetLevelChange.class, MyPetLevelEvent.class, "mypet level change")
+            Skript.registerEvent("MyPet Level Change", EvtPetLevelChange.class, MyPetLevelEvent.class, "mypet level change")
                     .description("ペットのレベルが変化したときに呼び出されます");
             EventValues.registerEventValue(MyPetLevelEvent.class, int.class, new Getter<Integer, MyPetLevelEvent>() {
                 @Nullable
