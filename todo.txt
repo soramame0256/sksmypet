@@ -1,1 +1,2 @@
-実装されているイベントとその関連expressionをすべて実装する
+実装されているイベントとその関連expressionをすべて実装する - 完了 (^^)/
+Expression(de.Keyle.MyPet.api.entity.MyPet)の実装 - 作成中...
